@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const index_pelicula=require("./router/rutas_pelicula");
 const connection=require("./config/conexion");
+const cors = require('cors');
+app.use(cors());
 //ruteo de APIS
 app.use('/',index_pelicula);
 
@@ -33,6 +35,6 @@ app.get("/division",(req,res)=>{
     var division = Number(datos.n1) / Number(datos.n2);
     res.json({mensaje:"La respuesta es: "+ division});
 });
-app.listen(3000,()=>{
+app.listen(process.env.PORT ||8000,()=>{
     console.log("Servicio iniciado")
 });
